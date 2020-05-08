@@ -27,6 +27,7 @@ public class fishingControl : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             catOb = GetClickedObject();
+            Debug.Log("왼쪽버튼눌림");
         }
 
         // 오브젝트 클릭 체크
