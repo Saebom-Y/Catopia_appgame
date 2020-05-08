@@ -8,6 +8,7 @@ public class fishingControl : MonoBehaviour
     GameObject catOb;
     public GameObject mainCanvus, fishingCanvus;
     public GameObject mainCamera;
+    public GameObject fishingSlider;
 
     bool m_backBTcheck = false; // 백버튼체크. 뒤로가기 되었는가?
     float m_cPos = 0.0f;
@@ -16,8 +17,13 @@ public class fishingControl : MonoBehaviour
     [SerializeField]
     AnimationCurve m_ac;
 
+    // 시간 변수
+    public float m_randTime= 0;
+
+    // 업데이트 함수
     void Update()
     {
+        // 마우스 눌렸을 때
         if (Input.GetMouseButtonDown(0))
         {
             catOb = GetClickedObject();
@@ -34,8 +40,6 @@ public class fishingControl : MonoBehaviour
                 mainCanvus.SetActive(false);
                 fishingCanvus.SetActive(true);
                 m_cPos = Mathf.Min(1, m_cPos + Time.deltaTime * m_aniSpeed);
-
-
             }
             else
             {
@@ -64,6 +68,9 @@ public class fishingControl : MonoBehaviour
         
         // 항상 돌아가도록
         mainCamera.transform.position = Vector3.Lerp(new Vector3(0, 5, -10), new Vector3(1.5f, 7, -5), m_ac.Evaluate(m_cPos));
+
+        // 시간 변수
+        // m_fishTime = Time.time + m_randTime;
     }
 
     private GameObject GetClickedObject()
@@ -86,4 +93,17 @@ public class fishingControl : MonoBehaviour
     {
         m_backBTcheck = true;
     }
+
+    public void start_fishing() // 낚시 시작 버튼 클릭
+    {
+        StartCoroutine("fishing_After_delay");
+    }
+
+    IEnumerator fishing_After_delay()
+    {
+        m_randTime = Random.Range(3.0f, 10.0f);
+        yield return new WaitForSeconds(m_randTime);
+        fishingSlider.SetActive(true);
+    }
+
 }

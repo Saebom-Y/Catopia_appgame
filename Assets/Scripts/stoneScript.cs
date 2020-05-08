@@ -29,10 +29,47 @@ public class stoneScript : MonoBehaviour
     int m_sTwilight = 999;
     int m_sNight = 999;
 
-    public void used_Dawn()
+    // 상태 변환 변수
+    bool b_dawnNow = false;
+    bool b_daytimeNow = true;
+    bool b_twilightNow = false;
+    bool b_nightNow = false;
+
+    private void Update()
     {
-        m_sDawn -= 1;
-        // 상태변경 = 새벽
+        t_Dawn.text = m_sDawn.ToString();
+        t_Daytime.text = m_sDaytime.ToString();
+        t_Twilight.text = m_sTwilight.ToString();
+        t_Night.text = m_sNight.ToString();
+
+        if (b_dawnNow == true)
+        {
+
+        }
+
     }
 
+    public void used_Dawn()
+    {
+        // 새벽 구름돌 사용
+        m_sDawn -= 1;
+    }
+
+    public void used_Daytime()
+    {
+        // 낮 구름돌 사용
+        m_sDaytime -= 1;
+    }
+
+    public void used_Twilight()
+    {
+        // 황혼 구름돌 사용
+        m_sTwilight -= 1;
+    }
+
+    public void used_Night()
+    {
+        // 밤 구름돌 사용
+        m_sNight -= 1;
+    }
 }
