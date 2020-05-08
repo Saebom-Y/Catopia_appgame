@@ -53,6 +53,7 @@ public class stoneScript : MonoBehaviour
     {
         // 새벽 구름돌 사용
         m_sDawn -= 1;
+        Debug.Log("돌을 썼다!");
     }
 
     public void used_Daytime()
